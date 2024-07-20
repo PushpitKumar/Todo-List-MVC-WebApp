@@ -3,25 +3,34 @@
 ## Table of Contents
 <ol>
 <li>Project Overview</li>
+<br/>
 <li>Solution Summary</li>
+<br/>
 <ul>
   <li>2.1 Scope</li>
   <li>2.2 Assumptions</li>
   <li>2.3 Dependencies</li>
   <li>2.4 Risks</li>
 </ul>
+<br/>
 <li>Schematic Diagram</li>
+<br/>
 <li>System Design</li>
+<br/>
 <ul>
 <li>4.1 Proposed Design</li>
 <li>4.2 Component Inventory</li>
 </ul>
+<br/>
 <li>Database Design</li>
+<br/>
 <ul>
 <li>5.1 Data Model</li>
 <li>5.2 Tables Structure</li>
 </ul>
+<br/>
 <li>App Implementation</li>
+<br/>
 <li>Drawbacks and Future Scope</li>
 </ol>
 
