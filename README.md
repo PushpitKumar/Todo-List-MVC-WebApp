@@ -163,9 +163,38 @@ The Todo List Web-Application using ASP.NET MVC architecture.
 
 ### 6. App Implementation
 
-<p align="center">
-  ![Screenshot (1)](https://github.com/user-attachments/assets/fa08170f-e46c-4c20-90cb-e94332d37dd8)
-</p>
+![Screenshot (1)](https://github.com/user-attachments/assets/92bde8ef-b08c-416a-a4e1-8073761b1cbd)
+![Screenshot (2)](https://github.com/user-attachments/assets/cbf24b6e-8575-480f-bb14-57bcac4f9ad0)
+![Screenshot (3)](https://github.com/user-attachments/assets/0fe03e37-d688-4878-8b7b-b85e4d2f13c3)
+![Screenshot (4)](https://github.com/user-attachments/assets/007fa65b-b37a-4aca-9910-050f793d3109)
+![Screenshot (5)](https://github.com/user-attachments/assets/821ce4f8-7dfe-427a-8e6c-23d3ce4d9163)
+![Screenshot (6)](https://github.com/user-attachments/assets/2a7f0f7f-7c56-4dcf-b574-5c0569a6a5e9)
+![Screenshot (7)](https://github.com/user-attachments/assets/6980fec4-5ac1-4882-bd7a-15660e272ba1)
+![Screenshot (8)](https://github.com/user-attachments/assets/767be3d2-fe03-448b-b74b-93f26d4a96ca)
+![Screenshot (9)](https://github.com/user-attachments/assets/07172cc7-2531-4a35-a17a-4f6a127ddaa6)
+![Screenshot (10)](https://github.com/user-attachments/assets/0333abdf-7009-4921-92dc-4f5ff22e7747)
+![Screenshot (11)](https://github.com/user-attachments/assets/254e5a90-4cb7-405d-8a2a-199232f92a45)
+![Screenshot (12)](https://github.com/user-attachments/assets/4c724de7-c802-4d39-b684-b5f3c90d737a)
+![Screenshot (13)](https://github.com/user-attachments/assets/1b34d5c5-9784-4b25-b047-bbf4c9448ef9)
+![Screenshot (14)](https://github.com/user-attachments/assets/b122a755-e023-4360-bcff-19fd08dbcf5b)
+![Screenshot (15)](https://github.com/user-attachments/assets/1eab1d80-94d3-4c2d-8190-de6021e685b0)
+![Screenshot (16)](https://github.com/user-attachments/assets/c925ca64-94e8-4644-ad28-2ead79a0b3d8)
+![Screenshot (17)](https://github.com/user-attachments/assets/ccadfaf2-77ea-4881-a459-2c1e7d9109a4)
+![Screenshot (18)](https://github.com/user-attachments/assets/22c3fc24-3fc1-4bd7-8db4-c429f56b8ab7)
+![Screenshot (19)](https://github.com/user-attachments/assets/8bb9f53d-ad74-4f19-bf34-21b04180652e)
+![Screenshot (20)](https://github.com/user-attachments/assets/b4f3a020-6f49-44dc-8200-a7c448f264f7)
+![Screenshot (21)](https://github.com/user-attachments/assets/76946e42-b2dd-4ff1-a10f-47b5a113361d)
+![Screenshot (22)](https://github.com/user-attachments/assets/1fecf6bf-a1a3-4010-99a7-a945c6a0054e)
+
+### 7. Drabacks and Future Scope
+
+* There is only 1 Admin to monitor the application. In future, additional admins can be created to better handle the users.
+* Scheduling can be implemented based on which mails can be triggered to end-users. This will notify them regarding the status of their tasks/activities.
+* Functionality to reset passwords can be implemented. Currently, if the user forgets their password, it has to be looked up in DB.
+* UI can be improved significantly to achieve simultaneous tasks in a single page through AJAX calls. Bootstrap's card layout can be utilized to make the Todo Lists look more compact.
+* The application can be run in local currently, since it has not been deployed on a server.
+
+
 
 
 
