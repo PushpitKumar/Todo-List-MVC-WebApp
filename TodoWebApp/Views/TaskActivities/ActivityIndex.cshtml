@@ -1,0 +1,121 @@
+﻿@model IEnumerable<TodoWebApp.Models.TaskActivity>
+
+@{
+    ViewBag.Title = "ActivityIndex";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+
+    .action-link a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .action-link a:hover {
+        color: white;
+    }
+
+    a.actionlink1{
+        text-decoration: none;
+        color: darkblue;
+    }
+
+    a.actionlink1:hover {
+        color: white;
+    }
+
+    a.actionlink2 {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    a.actionlink2:hover {
+        color: white;
+    }
+
+    .home-link a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .home-link a:hover {
+        color: white;
+    }
+
+    .CompletedActivity {
+        text-decoration: line-through;
+    }
+
+    p {
+        text-align: center;
+    }
+
+</style>
+
+<main>
+    <h4>Checklist</h4>
+
+    <div class="action-link">
+        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Add New", "CreateActivity", "TaskActivities", new { id = ViewBag.TaskId }, null)</button>
+    </div>
+
+    @if (Model.Count() != 0)
+    {
+        <p>@ViewBag.Percent% Completed!</p>
+
+        <div id="activityprogressbar">
+            <div class="progress" style="height: 12px">
+                <div class="progress-bar" role="progressbar" style="width: @ViewBag.Percent%; background-color:darkblue"></div>
+            </div>
+        </div>
+    }
+
+    <br />
+
+    <table class="table shadow">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.ActivityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.ActivityName)
+            </th>
+            <th width="300px">
+                @Html.DisplayNameFor(m => m.isCompleted)
+            </th>
+            <th>@Html.DisplayName("Actions")</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityId)
+                </td>
+                <td>
+                    @if (item.isCompleted)
+                    {
+                        <div class="CompletedActivity">
+                            @Html.DisplayFor(modelItem => item.ActivityName)
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.ActivityName)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isCompleted)
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary">@Html.ActionLink("Edit", "EditActivity", new { id = item.ActivityId }, new { @class = "actionlink1" })</button>
+                    <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Delete", "DeleteActivity", new { id = item.ActivityId }, new { @class = "actionlink2" })</button>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="home-link">
+        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to Tasks", "TaskIndex", "Tasks", new { id = Session["listId"] }, null)</button>
+    </div>
+</main>

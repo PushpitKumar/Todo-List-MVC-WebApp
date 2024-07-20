@@ -1,0 +1,85 @@
+﻿@model TodoWebApp.Models.User
+
+@{
+    ViewBag.Title =  Model.UserName + "Details";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+    .action-link a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .action-link a:hover {
+        color: white;
+    }
+</style>
+
+<main>
+    <h4>@Model.UserName's Details</h4>
+
+    <div>
+        <table class="table table-bordered table-striped-columns shadow">
+            <tr>
+                <td width="150"><strong>@Html.DisplayNameFor(m => m.UserId)</strong></td>
+                <td>@Html.DisplayFor(m => m.UserId)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.UserName)</strong></td>
+                <td>@Html.DisplayFor(m => m.UserName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.FirstName)</strong></td>
+                <td>@Html.DisplayFor(m => m.FirstName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.MiddleName)</strong></td>
+                <td>@Html.DisplayFor(m => m.MiddleName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.LastName)</strong></td>
+                <td>@Html.DisplayFor(m => m.LastName)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.EmailAddress)</strong></td>
+                <td>@Html.DisplayFor(m => m.EmailAddress)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.Password)</strong></td>
+                <td>@Html.DisplayFor(m => m.Password)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.PhoneNumber)</strong></td>
+                <td>@Html.DisplayFor(m => m.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.DateOfBirth)</strong></td>
+                <td>@Html.DisplayFor(m => m.DateOfBirth)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.Gender)</strong></td>
+                <td>@Html.DisplayFor(m => m.Gender)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.Country)</strong></td>
+                <td>@Html.DisplayFor(m => m.Country)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.RegistrationDate)</strong></td>
+                <td>@Html.DisplayFor(m => m.RegistrationDate)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.LastActive)</strong></td>
+                <td>@Html.DisplayFor(m => m.LastActive)</td>
+            </tr>
+            <tr>
+                <td><strong>@Html.DisplayNameFor(m => m.ProfileBio)</strong></td>
+                <td>@Html.DisplayFor(m => m.ProfileBio)</td>
+            </tr>
+        </table>
+    </div>
+    <div class="action-link">
+        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back To All Users", "AllUsers", "Admin")</button>
+    </div>
+</main>

@@ -1,0 +1,72 @@
+﻿@model TodoWebApp.Models.TodoList
+
+@{
+    ViewBag.Title = "EditList";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .action-link a {
+        text-decoration: none;
+        color: red;
+    }
+
+    .action-link a:hover {
+        color: white;
+    }
+</style>
+
+<main>
+    <h4>Update List</h4>
+
+    @using (Html.BeginForm("EditList", "TodoLists", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.ListId)
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.ListName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.ListName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(m => m.UserId)
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="action-link">
+                        <button class="btn btn-sm btn-outline-success" type="submit" name="save" value="save">Save Changes</button>
+                        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to List", "TodoListIndex", "TodoLists")</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-success">@ViewBag.SuccessMessage</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger">@ViewBag.ErrorMessage</label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</main>

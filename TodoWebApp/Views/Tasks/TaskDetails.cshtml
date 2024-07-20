@@ -1,0 +1,87 @@
+﻿@model TodoWebApp.Models.Task
+
+@{
+    ViewBag.Title = "TaskDetails";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .actionlink a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .actionlink a:hover {
+        color: white;
+    }
+
+    img[src=""] {
+        display: none;
+    }
+</style>
+<main>
+
+<div>
+    <h4>Task Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(m => m.TaskName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.TaskName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(m => m.ImagePath)
+        </dt>
+        <dd>
+            <img src="@(Model.ImagePath == null ? "" : Url.Content(Model.ImagePath))" width="500" ; height="500" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(m => m.TimeOfCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.TimeOfCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(m => m.LastUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.LastUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(m => m.DueTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.DueTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(m => m.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(m => m.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.Status)
+        </dd>
+
+    </dl>
+</div>
+<div class="actionlink">
+    <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to Tasks", "TaskIndex", new { id = Model.ListId })</button>
+</div>
+</main>

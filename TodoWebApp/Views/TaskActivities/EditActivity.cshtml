@@ -1,0 +1,90 @@
+﻿@model TodoWebApp.Models.TaskActivity
+
+@{
+    ViewBag.Title = "EditActivity";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .action-link a {
+        text-decoration: none;
+        color: red;
+    }
+
+    .action-link a:hover {
+        color: white;
+    }
+
+    a.ActivityIndex {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    a.ActivityIndex:hover {
+        color: white;
+    }
+</style>
+
+<main>
+    <h4>Update Activity</h4>
+
+    @using (Html.BeginForm("EditActivity", "TaskActivities", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.ActivityId)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ActivityName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.ActivityName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.ActivityName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.isCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(m => m.isCompleted)
+                        @Html.ValidationMessageFor(m => m.isCompleted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(m => m.TaskId)
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(m => m.TaskId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-sm btn-outline-success" type="submit" name="save" value="save">Save Changes</button>
+                    <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to Checklist", "ActivityIndex", "TaskActivities", new { id = Model.TaskId }, new { @class = "ActivityIndex" })</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-success">@ViewBag.SuccessMessage</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger">@ViewBag.ErrorMessage</label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</main>

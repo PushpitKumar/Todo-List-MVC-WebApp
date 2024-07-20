@@ -1,0 +1,39 @@
+﻿body {
+    background-color: #FFCAA8;
+    /*background: url("Image.jpg") no-repeat;
+    background-size: cover;
+    background-position: center*/
+    min-height: 100vh;
+}
+
+main {
+    font-family: 'Sans Serif Collection';
+}
+
+.navbar-custom {
+    background-color: navy;
+}
+
+.navbar-brand {
+    color: lavender;
+}
+
+    .navbar-brand:hover {
+        color: #E8D5EC;
+    }
+
+.nav-link {
+    color: lavender;
+}
+
+    .nav-link:hover {
+        color: #E8D5EC;
+    }
+
+.custom-toggler .navbar-toggler {
+    border-color: transparent;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url( "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}

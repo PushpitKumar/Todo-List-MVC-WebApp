@@ -1,0 +1,39 @@
+﻿@model TodoWebApp.Models.User
+@{
+    if (Session["userName"] == null) //This will prevent getting back into your home page after logging out.
+    {
+        Response.Redirect("https://localhost:44324/");
+    }
+    ViewBag.Title = "UserHome";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .action-link a {
+        text-decoration: none;
+        color: red;
+    }
+
+        .action-link a:hover {
+            color: white;
+        }
+</style>
+
+<main>
+    <h4>Dashboard</h4>
+    @for (int i = 0; i < Model.ProfileBio.Count(); i++)
+    {
+        if (i == Model.ProfileBio.Count() - 1)  //Last Item
+        {
+            break;
+        }
+        else if (Model.ProfileBio[i] == '.')
+        {
+            <label>|</label>
+        }
+        else
+        {
+            <label style="font-family:'Times New Roman', Times, serif;letter-spacing:normal">@Model.ProfileBio[i]</label>
+        }
+    }
+</main>

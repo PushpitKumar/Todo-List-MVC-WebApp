@@ -1,0 +1,162 @@
+﻿@model IEnumerable<TodoWebApp.Models.User>
+
+@{
+    ViewBag.Title = "All Users";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+
+<style>
+    a.actionlink1 {
+        text-decoration: none;
+        color: darkblue;
+    }
+
+    a.actionlink1:hover {
+        color: white;
+    }
+
+    a.actionlink2 {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    a.actionlink2:hover {
+        color: white;
+    }
+
+    .homelink a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .homelink a:hover {
+        color: white;
+    }
+
+</style>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<main>
+    <h3 style="text-align:center">All Users</h3>
+    @using (Html.BeginForm("AllUsers", "Admin", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            <div class="d-inline-flex">
+                <input type="text" class="form-control" name="search" placeholder="Search..." />
+                <button class="btn btn-sm btn-primary" style="margin-left: 5px" type="submit"><span class="icon"><ion-icon name="search-outline" style="padding-top:1px"></ion-icon></span>Search</button>
+            </div>
+        </div>
+    }
+    <br />
+    <table class="table table-bordered border-dark table-striped shadow">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.RegistrationDate)
+            </th>
+            <th>Admin Controls</th>
+        </tr>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(item => user.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => user.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => user.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => user.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => user.RegistrationDate)
+                </td>
+                <td width="145">
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary">@Html.ActionLink("Details", "UserDetails", "Admin", new { id = user.UserId }, new { @class = "actionlink1" })</button>
+                        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Delete", "DeleteUser", "Admin", new { id = user.UserId }, new { @class = "actionlink2" })</button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+
+   
+    @{
+        int totalpages = ViewBag.TotalPages;
+        if (totalpages > 1) // Check if pagination is needed
+        {
+            <ul class="pagination">
+                @if(ViewBag.PageNumber == 1)  //To avoid pagenumber going below 0. Stay at page1
+                {
+                    <li class="page-item">
+                        @Html.ActionLink("<<", "AllUsers", "Admin", new { PageNumber = ViewBag.PageNumber }, new { @class = "page-link" })
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        @Html.ActionLink("<<", "AllUsers", "Admin", new { PageNumber = ViewBag.PageNumber - 1 }, new { @class = "page-link" })
+                    </li>
+                }
+                @for(int i = 1; i <= totalpages; i++)
+                {
+                    if (i == ViewBag.pageNumber)
+                    {
+                        <li class="page-item active">
+                            @Html.ActionLink(i.ToString(), "AllUsers", "Admin", new { PageNumber = i }, new { @class = "page-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            @Html.ActionLink(i.ToString(), "AllUsers", "Admin", new { PageNumber = i }, new { @class = "page-link" })
+                        </li>
+                    } 
+                }
+                @if(ViewBag.PageNumber == totalpages)  //To avoid pagenumber going past last page. Stay at last page.
+                {
+                    <li class="page-item">
+                        @Html.ActionLink(">>", "AllUsers", "Admin", new { PageNumber = ViewBag.PageNumber }, new { @class = "page-link" })
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        @Html.ActionLink(">>", "AllUsers", "Admin", new { PageNumber = ViewBag.PageNumber + 1 }, new { @class = "page-link" })
+                    </li>
+                }
+            </ul>
+        }
+    }
+
+    <div class="homelink">
+        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to Home", "AdminHome", "Admin")</button>
+    </div>
+</main>

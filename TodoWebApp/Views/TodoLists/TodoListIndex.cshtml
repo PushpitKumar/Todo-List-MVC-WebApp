@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TodoWebApp.Models.TodoList>
+
+@{
+    ViewBag.Title = "TodoListIndex";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+
+    .action-link a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .action-link a:hover {
+        color: white;
+    }
+    a.actionlink1 {
+        text-decoration: none;
+        color: blue;
+    }
+
+    a.actionlink1:hover {
+        color: white;
+    }
+
+    a.actionlink2 {
+        text-decoration: none;
+        color: black;
+    }
+
+    a.actionlink2:hover {
+        color: white;
+    }
+
+    a.actionlink3 {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    a.actionlink3:hover {
+        color: white;
+    }
+
+    .home-link a {
+        text-decoration: none;
+        color: darkred;
+    }
+
+    .home-link a:hover {
+        color: white;
+    }
+</style>
+
+<main>
+    <h4>My Todo-Lists</h4>
+
+    <div class="action-link">
+        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Add New", "CreateTodoList", "TodoLists")</button>
+    </div>
+    <br />
+    <table class="table shadow">
+        <tr>
+            <th width="480px">
+                @Html.DisplayNameFor(m => m.ListId)
+            </th>
+            <th width="450px">@Html.DisplayNameFor(m => m.ListName)</th>
+            <th style="text-align:center">@Html.DisplayName("Actions")</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListName)
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary">@Html.ActionLink("Edit", "EditList", "TodoLists", new { id = item.ListId }, new { @class = "actionlink1" })</button>
+                    <button class="btn btn-sm btn-outline-dark">@Html.ActionLink("Tasks", "TaskIndex", "Tasks", new { id = item.ListId }, new { @class = "actionlink2" })</button>
+                    <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Delete", "DeleteList", "TodoLists", new { id = item.ListId }, new { @class = "actionlink3" })</button>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="home-link">
+        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to Home", "UserHome", "User")</button>
+    </div>
+</main>

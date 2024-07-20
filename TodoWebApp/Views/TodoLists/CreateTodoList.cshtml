@@ -1,0 +1,61 @@
+﻿@model TodoWebApp.Models.TodoList
+
+@{
+    ViewBag.Title = "CreateTodoList";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    a.ListIndex {
+        text-decoration: none;
+        color: darkred;
+    } 
+
+    a.ListIndex:hover {
+        color: white;
+    }
+</style>
+<main>
+    @using (Html.BeginForm("CreateTodoList", "TodoLists", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Todo List</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.ListName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.ListName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.HiddenFor(m => m.UserId)
+                    @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-sm btn-outline-success" type="submit" name="save" value="save">Create</button>
+                    <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back To Lists", "TodoListIndex", "TodoLists", new { @class = "ListIndex" })</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger">@ViewBag.ErrorMessage</label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</main>

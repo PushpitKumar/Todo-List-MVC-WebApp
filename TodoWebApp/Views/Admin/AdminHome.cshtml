@@ -1,0 +1,28 @@
+﻿@model TodoWebApp.Models.User
+@{
+    if (Session["userName"] == null) //This will prevent getting back into your home page after logging out.
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    ViewBag.Title = "Admin Home";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<main>
+    <h4>Dashboard</h4>
+    @for (int i = 0; i < Model.ProfileBio.Count(); i++)
+    {
+        if (i == Model.ProfileBio.Count() - 1)  //Last Item
+        {
+            break;
+        }
+        else if (Model.ProfileBio[i] == '.')
+        {
+            <label>|</label>
+        }
+        else
+        {
+            <label style="font-family:'Times New Roman', Times, serif;letter-spacing:normal">@Model.ProfileBio[i]</label>
+        }
+    }
+</main>

@@ -1,0 +1,117 @@
+﻿@model TodoWebApp.Models.Task
+
+@{
+    ViewBag.Title = "EditTask";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .action-link a {
+        text-decoration: none;
+        color: red;
+    }
+
+    .action-link a:hover {
+        color: white;
+    }
+
+    img[src=""] {
+        display: none;
+    }
+</style>
+
+<main>
+
+    <h4>Update Task</h4>
+
+    @using (Html.BeginForm("EditTask", "Tasks", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.TaskId)
+            @Html.HiddenFor(m => m.TimeOfCreation)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.TaskName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.TaskName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.TaskName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.DueTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.DueTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.DueTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.RadioButtonFor(m => m.Priority, "Low", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("Low")
+                    @Html.RadioButtonFor(m => m.Priority, "Medium", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("Medium")
+                    @Html.RadioButtonFor(m => m.Priority, "High", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("High")
+                    @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.RadioButtonFor(m => m.Status, "Not Started", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("Not Started")
+                    @Html.RadioButtonFor(m => m.Status, "In-Progress", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("In-Progress")
+                    @Html.RadioButtonFor(m => m.Status, "Completed", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("Completed")
+                    @Html.RadioButtonFor(m => m.Status, "Overdue", new { htmlAttributes = new { @class = "form-control" } }) @Html.Label("Overdue")
+                    @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                <img src="@(Model.ImagePath == null ? "" : Url.Content(Model.ImagePath))" width="200" ; height="200" />
+                <div class="col-md-10">
+                    <input type="file" name="ImageFile" />
+                    @Html.ValidationMessageFor(m => m.ImagePath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(m => m.ListId)
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(m => m.ListId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="action-link">
+                        <button class="btn btn-sm btn-outline-success" type="submit" name="save" value="save">Save Changes</button>
+                        <button class="btn btn-sm btn-outline-danger">@Html.ActionLink("Back to Tasks", "TaskIndex", "Tasks", new { id = ViewBag.ListId }, new { @class = "TaskIndex" })</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-success">@ViewBag.SuccessMessage</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger">@ViewBag.ErrorMessage</label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</main>
