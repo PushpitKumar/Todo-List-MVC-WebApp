@@ -42,7 +42,7 @@ namespace TodoWebApp.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "This Field is Required!"), MaxLength(25)]
         [DataType(DataType.Password)]
         [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", ErrorMessage = "Password must be of minimum 8 characters and have a number, uppercase and special character!")]
-        public string Password { get; set; } 
+        public string Password { get; set; } //Password
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "This Field is Required!"), MaxLength(25)]
         [DataType(DataType.Password)]
